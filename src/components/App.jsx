@@ -4,6 +4,8 @@ import { ImageGallery } from './ImageGallery';
 import { fetchImagesWithQuery } from 'serwices';
 import { LoadMoreButton } from './Button';
 import { Loader } from './Loader';
+import { Modal } from './Modal';
+import './App.css';
 
 export class App extends Component {
   state = {
@@ -13,6 +15,7 @@ export class App extends Component {
     error: null,
     isLoading: false,
     hasMore: true,
+    selectedImage: null,
   };
 
   async componentDidUpdate(prevProps, prevState) {
@@ -50,16 +53,27 @@ export class App extends Component {
     }));
   };
 
+  handleImageClick = imageUrl => {
+    this.setState({ selectedImage: imageUrl });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ selectedImage: null });
+  };
+
   render() {
-    const { images, hasMore, isLoading } = this.state;
+    const { images, hasMore, isLoading, selectedImage } = this.state;
 
     return (
-      <div>
+      <div className='App'>
         <Searchbar onSubmit={this.handleSearch} />
-        <ImageGallery images={images} />
+        <ImageGallery images={images} onImageClick={this.handleImageClick} />
         {isLoading && <Loader />}
         {!isLoading && images.length > 0 && hasMore && (
           <LoadMoreButton onClick={this.handleLoadMore} />
+        )}
+        {selectedImage && (
+          <Modal imageUrl={selectedImage} onClose={this.handleCloseModal} />
         )}
       </div>
     );

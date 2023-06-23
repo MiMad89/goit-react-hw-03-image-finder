@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import css from './Button.module.css';
 
 export class LoadMoreButton extends Component {
   handleClick = e => {
@@ -8,7 +9,7 @@ export class LoadMoreButton extends Component {
 
   render() {
     return (
-      <button type="button" className="Button" onClick={this.handleClick}>
+      <button type="button" className={css.Button} onClick={this.handleClick}>
         Load more
       </button>
     );
