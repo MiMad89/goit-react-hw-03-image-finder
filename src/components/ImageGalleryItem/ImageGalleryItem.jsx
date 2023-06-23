@@ -1,7 +1,13 @@
 import React from 'react';
 import css from './ImageGalleryItem.module.css';
 
-export const ImageGalleryItem = ({ webformatURL, tags, id, largeImageURL, onImageClick }) => {
+export const ImageGalleryItem = ({
+  webformatURL,
+  tags,
+  id,
+  largeImageURL,
+  onImageClick,
+}) => {
   const handleClick = () => {
     onImageClick(largeImageURL);
   };

@@ -10,13 +10,13 @@ export class Modal extends Component {
     window.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleKeyDown = (event) => {
+  handleKeyDown = event => {
     if (event.code === 'Escape') {
       this.props.onClose();
     }
   };
 
-  handleOverlayClick = (event) => {
+  handleOverlayClick = event => {
     if (event.target === event.currentTarget) {
       this.props.onClose();
     }
@@ -34,4 +34,3 @@ export class Modal extends Component {
     );
   }
 }
-
